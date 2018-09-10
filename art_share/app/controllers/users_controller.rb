@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: id)
 
     if @user.nil?
-      user_not_found
+      not_found
     else
       render json: @user
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: id)
 
     if @user.nil?
-      user_not_found
+      not_found
     elsif @user.update(strong_params)
       render json: @user
     else
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: id)
 
     if @user.nil?
-      user_not_found
+      not_found
     elsif @user.destroy
       redirect_to users_url
     else
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def not_found
-    render 'User not found', status: 404
+    render "User not found", status: 404
   end
 
   def unprocessable_entity
