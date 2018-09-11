@@ -1,5 +1,5 @@
 class ArtworkShare < ApplicationRecord
-  validates [:artwork_id, :viewer_id], uniqueness: true
+  validates :artwork_id, uniqueness: { scope: :viewer_id }
   validates :artwork_id, :viewer_id, presence: true
 
   belongs_to :artwork,
@@ -8,5 +8,5 @@ class ArtworkShare < ApplicationRecord
 
   belongs_to :viewer,
     foreign_key: :viewer_id,
-    class_name: :user
+    class_name: :User
 end

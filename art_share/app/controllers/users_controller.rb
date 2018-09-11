@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(strong_params)
+    @user = User.new(user_params)
 
     if @user.save
       render json: @user
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
     if @user.nil?
       not_found
-    elsif @user.update(strong_params)
+    elsif @user.update(user_params)
       render json: @user
     else
       unprocessable_entity
@@ -51,7 +51,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def strong_params
+  private
+  def user_params
     params.require(:user).permit(:username)
   end
 

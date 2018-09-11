@@ -9,4 +9,7 @@ class User < ApplicationRecord
     foreign_key: :viewer_id,
     class_name: :ArtworkShare
 
+  has_many :comments,
+    foreign_key: :user_id,
+    class_name: :Comment 
 end
